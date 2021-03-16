@@ -1,7 +1,8 @@
 import * as React from "react";
 import * as ReactRedux from "react-redux";
-import { actions, RootState, TodoState, addTodo } from "./store";
+import { actions, RootState, TodoState, asyncAddTodo } from "./store";
 import "./App.css";
+import { getTodoList } from "./api";
 
 function App() {
   const dispatch = ReactRedux.useDispatch();
@@ -10,14 +11,12 @@ function App() {
   const [title, setTitle] = React.useState("");
 
   React.useEffect(() => {
-    fetch("https://jsonplaceholder.typicode.com/todos")
-      .then((res) => res.json())
-      .then((json) => dispatch(actions.set(json as TodoState[])));
+    getTodoList().then((json) => dispatch(actions.set(json as TodoState[])));
   }, []);
 
   const onSubmit = () => {
     if (!title.length) return;
-    dispatch(addTodo({ title: title }));
+    dispatch(asyncAddTodo({ title: title }));
     setTitle("");
   };
 
