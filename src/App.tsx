@@ -32,7 +32,12 @@ function App() {
       </button>
       <ul>
         {todoList.map((todo) => (
-          <li key={todo.id}>{todo.title}</li>
+          <li key={todo.id}>
+            <button onClick={() => dispatch(actions.delete(todo.id))}>
+              削除
+            </button>
+            <span style={{ marginLeft: 8 }}>{todo.title}</span>
+          </li>
         ))}
       </ul>
     </>

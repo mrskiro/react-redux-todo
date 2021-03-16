@@ -40,6 +40,14 @@ const todoSlice = createSlice({
     set: (state, action: PayloadAction<TodoState[]>) => {
       state.todoList = action.payload;
     },
+    delete: (state, action: PayloadAction<number>) => {
+      fetch(`https://jsonplaceholder.typicode.com/posts/${action.payload}`, {
+        method: "DELETE",
+      });
+      state.todoList = state.todoList.filter(
+        (todo) => todo.id !== action.payload
+      );
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(addTodo.fulfilled, (state, action) => {
