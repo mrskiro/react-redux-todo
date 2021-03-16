@@ -3,7 +3,7 @@ import { configureStore, createSlice, PayloadAction } from "@reduxjs/toolkit";
 export type TodoState = {
   userId: number;
   id: number;
-  title: "string";
+  title: string;
   completed: boolean;
 };
 
