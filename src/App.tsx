@@ -14,12 +14,11 @@ function App() {
   }, []);
 
   return (
-    // <ul>
-    //   {todoList.map((todo) => (
-    //     <li key={todo.id}>{todo.title}</li>
-    //   ))}
-    // </ul>
-    <></>
+    <ul>
+      {todoList.map((todo) => (
+        <li key={todo.id}>{todo.title}</li>
+      ))}
+    </ul>
   );
 }
 
